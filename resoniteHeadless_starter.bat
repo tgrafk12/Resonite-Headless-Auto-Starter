@@ -14,9 +14,10 @@ rem BEGIN BATCH CODE
 rem ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 cls
 @echo off
-title Resonite-Headless                                                                                                                                                                 
-echo Closing this window will turn off Auto-Start!
-echo If the server Crashes, it will Restart in 15 Seconds of it being stopped.
+title Resonite-Headless                                                                                                                                                          
+echo ~!Notice!~ Closing this window will turn off Auto-Start! ~!Notice!~
+echo.
+echo ~!Notice!~ If the server Crashes, it will Restart in 15 Seconds of it being stopped. ~!Notice!~
 echo.
 :start
 tasklist /nh /fi "Imagename eq %Server_Executable%" | find "Resonite"
@@ -27,20 +28,20 @@ echo Checking For any Updates to the Server file...
 start "" /b /w /high "%SteamCMD_Dir%\steamcmd.exe" +login USER +force_install_dir "%Server_Dir%" +app_update 2519830 -beta headless -betapassword BETAPASSWORD validate +quit :: Remember to change USER and BETAPASSWORD to the corect values!
 echo.
 echo The Server should have been started!
-echo If not, Please ether check for issues in Config, or Give an error code to someone that can help.
+echo If not, please ether check for issues in Config, or give an error code to someone that can help.
 echo.
 echo Waiting For Crash/Exit...
 cd "%Executable_Dir%"
 start "" /w /high "%Server_Executable%" :: Using "-log" Will Prevent Automatic Crash Detection
 echo Crash/Exit Detected!
-echo Will retry to start back up the Server in 15 Seconds...
+echo Attempting to restart the server in 15 Seconds...
 echo.
 echo CTRL+C To Freeze Before Restarting
 timeout /t 15
 goto start
 :close
 echo.
-echo !ERROR! SERVER ALREADY RUNNING! SHUTDOWN WILL COMMENCE
+echo !ERROR! SERVER ALREADY RUNNING! SHUTDOWN OF SERVEREXE WILL BE DONE AND STARTUP WILL BE ATTEMPTED AGAIN! 
 taskkill /im "%Server_Executable%" /f /t
 timeout /t 3
 goto start
